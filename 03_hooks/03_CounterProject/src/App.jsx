@@ -11,8 +11,14 @@ function App() {
     //here in console number is inscreasing but in website it is not updating(ui updation not happening)
     // console.log("Clicked", counter);
     // -----------------------
-    counter = counter + 1;
-    setCounter(counter);
+    // counter = counter + 1;
+    // setCounter(counter);
+    // ---------------
+    // Interview ques 
+    setCounter((prevCounter) => prevCounter + 1);
+    setCounter((prevCounter) => prevCounter + 1);
+    setCounter((prevCounter) => prevCounter + 1);
+    // ---------------
     // -----------------------
     // or setCounter(counter + 1)
   };
