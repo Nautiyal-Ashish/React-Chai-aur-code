@@ -1,8 +1,6 @@
 import conf from "../conf/conf.js";
 import { Client, Account, ID } from "appwrite";
 
-// Code better than below
-
 export class AuthService {
   client = new Client();
   account;
@@ -23,7 +21,7 @@ export class AuthService {
         name
       );
       if (userAccount) {
-        //call another method (direct login )
+        // call another method
         return this.login({ email, password });
       } else {
         return userAccount;
@@ -41,13 +39,22 @@ export class AuthService {
     }
   }
 
+  // async getCurrentUser() {
+  //   try {
+  //     return await this.account.get();
+  //   } catch (error) {
+  //     console.log("Appwrite serive :: getCurrentUser :: error", error);
+  //   }
+  //   return null;
+  // }
   async getCurrentUser() {
     try {
+      // Retrieve the current user's account details
       return await this.account.get();
     } catch (error) {
+      // Log any errors encountered while getting the current user
       console.log("Appwrite service :: getCurrentUser :: error", error);
     }
-
     return null;
   }
 
@@ -55,7 +62,7 @@ export class AuthService {
     try {
       await this.account.deleteSessions();
     } catch (error) {
-      return error;
+      console.log("Appwrite serive :: logout :: error", error);
     }
   }
 }
@@ -63,22 +70,3 @@ export class AuthService {
 const authService = new AuthService();
 
 export default authService;
-
-// ----------------------------------
-
-// Default code
-/*
-const client = new Client()
-.setEndpoint('https://cloud.appwrite.io/v1') 
-// Your API Endpoint
-.setProject('<PROJECT_ID>');                 
-// Your project ID
-
-const account = new Account(client);
-
-const user await = account.create(
-    'ID.unique()', 
-    'email@example.com', 
-    'password'
-);
-*/
